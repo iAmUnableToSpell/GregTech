@@ -20,12 +20,19 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.Loader;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static gregtech.api.GTValues.MODID_AR;
 
 public class GTOreCategory extends BasicRecipeCategory<GTOreInfo, GTOreInfo> {
+
+    private static final int NUM_OF_SLOTS = 5;
+    private static final int SLOT_WIDTH = 18;
+    private static final int SLOT_HEIGHT = 18;
 
     protected final IDrawable slot;
     protected OreDepositDefinition definition;
@@ -38,9 +45,6 @@ public class GTOreCategory extends BasicRecipeCategory<GTOreInfo, GTOreInfo> {
     protected final int FONT_HEIGHT = Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
     protected final Map<Integer, String> namedDimensions = WorldGenRegistry.getNamedDimensions();
     private final Supplier<List<Integer>> dimension = this::getAllRegisteredDimensions;
-    private final int NUM_OF_SLOTS = 5;
-    private final int SLOT_WIDTH = 18;
-    private final int SLOT_HEIGHT = 18;
 
     public GTOreCategory(IGuiHelper guiHelper) {
         super("ore_spawn_location",

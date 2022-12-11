@@ -35,11 +35,14 @@ import java.nio.file.FileSystems;
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static gregtech.api.GTValues.M;
 import static gregtech.api.GTValues.MODID_CC;
 
 public class GTOreInfo implements IRecipeWrapper {
+
+    private static final Pattern UNDERSCORE_PATTERN = Pattern.compile("_");
 
     private final OreDepositDefinition definition;
     private final int maxHeight;
@@ -154,7 +157,7 @@ public class GTOreInfo implements IRecipeWrapper {
         return containedBlocksAsItemStacks;
     }
 
-    private Collection<IBlockState> getPossibleStates(FillerEntry entry, Collection<IBlockState> collection) {
+    private static Collection<IBlockState> getPossibleStates(FillerEntry entry, Collection<IBlockState> collection) {
         for (IBlockState state : entry.getPossibleResults()) {
             if (state.getBlock() instanceof BlockOre) {
                 if (!state.getValue(((BlockOre) state.getBlock()).STONE_TYPE).shouldBeDroppedAsItem) {
@@ -166,7 +169,7 @@ public class GTOreInfo implements IRecipeWrapper {
         return collection;
     }
 
-    private List<ItemStack> getStacksFromStates(Collection<IBlockState> states, List<ItemStack> list) {
+    private static List<ItemStack> getStacksFromStates(Collection<IBlockState> states, List<ItemStack> list) {
         for (IBlockState state : states) {
             list.add(GTUtility.toItem(state));
         }
@@ -218,7 +221,7 @@ public class GTOreInfo implements IRecipeWrapper {
     }
 
     // Finds the generated surface block or material. In the case of Fluid generation, finds a bucket of the fluid.
-    public ItemStack findSurfaceBlock(IVeinPopulator veinPopulator) {
+    public static ItemStack findSurfaceBlock(IVeinPopulator veinPopulator) {
 
         Material mat;
         IBlockState state;
@@ -254,7 +257,7 @@ public class GTOreInfo implements IRecipeWrapper {
     }
 
 
-    public String makePrettyName(String name) {
+    public static String makePrettyName(String name) {
         FileSystem fs = FileSystems.getDefault();
         String separator = fs.getSeparator();
 
@@ -267,7 +270,7 @@ public class GTOreInfo implements IRecipeWrapper {
         //Take the first entry
         newName = tempName[0];
         //Replace all "_" with a space
-        newName = newName.replaceAll("_", " ");
+        newName = UNDERSCORE_PATTERN.matcher(newName).replaceAll(" ");
         //Capitalize the first letter
         newName = newName.substring(0, 1).toUpperCase() + newName.substring(1);
 
