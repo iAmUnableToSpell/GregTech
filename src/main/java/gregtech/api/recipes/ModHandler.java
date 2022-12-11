@@ -652,13 +652,14 @@ public final class ModHandler {
         List<IRecipe> toRemove = new ArrayList<>();
 
         for (IRecipe recipe : registry) {
-            if (predicate.test(recipe)) {
+            if (predicate.test(recipe) && recipe.getRegistryName() != null) {
                 toRemove.add(recipe);
                 recipesRemoved++;
             }
         }
 
-        toRemove.forEach(recipe -> registry.register(new DummyRecipe().setRegistryName(recipe.getRegistryName())));
+        toRemove.forEach(recipe -> registry.register(new DummyRecipe()
+                .setRegistryName(recipe.getRegistryName())));
 
         return recipesRemoved;
     }
