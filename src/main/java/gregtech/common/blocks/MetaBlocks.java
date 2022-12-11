@@ -41,6 +41,7 @@ import gregtech.common.pipelike.itempipe.tile.TileEntityItemPipe;
 import gregtech.common.pipelike.itempipe.tile.TileEntityItemPipeTickable;
 import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -55,8 +56,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -344,7 +343,7 @@ public class MetaBlocks {
         registerItemModel(STONE_WINDMILL_A);
         registerItemModel(STONE_WINDMILL_B);
         registerItemModel(STONE_BRICKS_SQUARE);
-        registerItemModelWithOverride(RUBBER_LOG, ImmutableMap.of(BlockRubberLog.LOG_AXIS, EnumAxis.Y));
+        registerItemModelWithOverride(RUBBER_LOG, ImmutableMap.of(BlockLog.LOG_AXIS, EnumAxis.Y));
         registerItemModel(RUBBER_LEAVES);
         registerItemModel(RUBBER_SAPLING);
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(RUBBER_SAPLING), 0,
