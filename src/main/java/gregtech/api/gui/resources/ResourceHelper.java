@@ -2,13 +2,9 @@ package gregtech.api.gui.resources;
 
 import gregtech.api.GTValues;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.IOUtils;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
