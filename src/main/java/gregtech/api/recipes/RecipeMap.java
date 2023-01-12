@@ -725,7 +725,7 @@ public class RecipeMap<R extends RecipeBuilder<R>> {
 
             // Either add the recipe or create a branch.
             r = targetMap.compute(obj, (k, v) -> {
-                if (count == ingredients.size() - 1) {
+                if (count == ingredients.size()) {
                     if (v != null) {
                         if (v.left().isPresent() && v.left().get() == recipe) {
                             return v;
